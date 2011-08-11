@@ -1,0 +1,15 @@
+.idea/
+*.iml
+*.ipr
+*.iws
+*.ids
+/target/
+ui/target/
+backend/target
+api/target
+distribution/target
+client/target
+live-tests/target
+.settings/
+.project
+.classpath
