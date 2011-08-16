@@ -3,13 +3,7 @@
 *.ipr
 *.iws
 *.ids
-/target/
-ui/target/
-backend/target
-api/target
-distribution/target
-client/target
-live-tests/target
+*/target/
 .settings/
 .project
 .classpath
