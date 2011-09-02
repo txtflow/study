@@ -1,7 +1,6 @@
 package ru.artem.study.algorithms.sorting;
 
 import ru.artem.study.algorithms.utils.SimpleGenerator;
-import ru.artem.study.algorithms.utils.Utils;
 
 import static ru.artem.study.algorithms.utils.Utils.printArray;
 
@@ -11,18 +10,18 @@ import static ru.artem.study.algorithms.utils.Utils.printArray;
  */
 public class SortingTest {
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         final int a[] = SimpleGenerator.getRandomArray(20, 100);
         final int sortedArray[];
 
         sortedArray = (new JDKSort()).test(a.clone());
         printArray(sortedArray);
         int sa[] = a.clone();
-        (new QuickSort()).sort(sa);
+        (new CountingSort()).sort(sa);
         printArray(sa);
 
 
-        Utils.equals(sortedArray, (new QuickSort()).test(a.clone()));
+//        Utils.equals(sortedArray, (new QuickSort()).test(a.clone()));
 //        Utils.equals(sortedArray,(new HeapSort()).test(a.clone()));
 //        Utils.equals(sortedArray,(new CountingSort()).test(a.clone()));
 //        Utils.equals(sortedArray,(new InsertionSort()).test(a.clone()));

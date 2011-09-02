@@ -1,9 +1,9 @@
 package ru.artem.study.algorithms.sort
 
 import util.Random
-import ru.artem.study.algorithms.utils.SimpleGenerator
-import ru.artem.study.algorithms.utils.Utils._
+import SortUtils._
 import ru.artem.study.algorithms.sorting.JDKSort
+import ru.artem.study.algorithms.utils.{Utils, SimpleGenerator}
 
 trait Sorter{
   def sort(array: Array[Int]): Array[Int]
@@ -13,19 +13,11 @@ trait Sorter{
 object QuickSort extends Sorter{
   private val random = new Random()
 
-  def quickSort(array: Array[Int]) = {
-    val pivot = random.nextInt(array.length - 1)
-    val (less, moreOrEq) = array.partition( _ < array(pivot))
-
-  }
-
   def sort(array: Array[Int]) = sort(array, 0 , array.length)
 
   private def sort(array: Array[Int], low: Int, high: Int): Array[Int] = {
     if(low < high){
       val pivot = partition(array, low, high)
-      printArray(array)
-      println("Pivot - " + array(pivot))
       sort(array, low, pivot)
       sort(array, pivot+1, high)
     }
@@ -33,10 +25,9 @@ object QuickSort extends Sorter{
   }
 
   def partition(array: Array[Int], low: Int, high: Int) = {
-//    val pivotIndex = if((high - low) < 2) 0 else random.nextInt(high - low - 1)
-    val pivotIndex = high - 1
+    val pivotIndex = low + random.nextInt(high - low)
     val pivot = array(pivotIndex)
-//    swap(array, pivotIndex, high-1) // move pivot to the end
+    swap(array, pivotIndex, high-1) // move pivot to the end
 
     var storeIndex = low
     for(i <- low until high-1){
@@ -51,14 +42,24 @@ object QuickSort extends Sorter{
   }
 }
 
+object SortUtils{
+  def swap[A <: Any](a: Array[A], i: Int, j: Int){
+    if(i != j){
+      val tmp = a(i)
+      a(i) = a(j)
+      a(j) = tmp
+    }
+  }
+}
+
 object SortChecker{
   def main(args: Array[String]){
     val a = SimpleGenerator.getRandomArray(20, 100)
     val sortedArray = (new JDKSort).test(a.clone())
-    printArray(sortedArray)
+    Utils.printArray(sortedArray)
     val sa = a.clone()
     QuickSort.sort(sa)
-    printArray(sa)
-    println("Result - " + equals(sortedArray, sa))
+    Utils.printArray(sa)
+    println("Result - " + Utils.equals(sortedArray, sa))
   }
 }
