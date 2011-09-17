@@ -49,12 +49,15 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <commons-httpclient.version>3.1</commons-httpclient.version>
+
+        <oracle.coherence.version>3.7.0.0</oracle.coherence.version>
     </properties>
 
     <modules>
         <module>algorithms</module>
         <module>concurrency</module>
 		<module>experimental</module>
+		<module>coherence</module>
     </modules>
 
     <dependencyManagement>
@@ -257,6 +260,12 @@
                 <artifactId>netty</artifactId>
                 <version>${org.jboss.netty.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>coherence</artifactId>
+                <version>${oracle.coherence.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -456,6 +465,24 @@
             <id>jclouds-snapshots-repository</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>-->
+        <!--<repository>
+			<id>txtflow-snapshots</id>
+			<url>https://raw.github.com/txtflow/maven-repo/master/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+				<updatepolicy>always</updatepolicy>
+				<checksumpolicy>warn</checksumpolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatepolicy>never</updatepolicy>
+				<checksumpolicy>fail</checksumpolicy>
+			</snapshots>
+		</repository>-->
+		<repository>
+			<id>txtflow-releases</id>
+			<url>https://raw.github.com/txtflow/maven-repo/master/releases</url>
+		</repository>
     </repositories>
 
     <pluginRepositories>
